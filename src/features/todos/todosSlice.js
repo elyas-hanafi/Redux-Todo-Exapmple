@@ -3,13 +3,7 @@ import { produce } from 'immer';
 import { createSelector } from 'reselect';
 import { StatusFilters } from '../filter/filterSlice';
 const initState = {
-  entities: {
-    1: { id: 1, text: 'Deign ui', completed: true, color: 'red' },
-    2: { id: 2, text: 'discover state', completed: false },
-    3: { id: 3, text: 'discover actions', completed: false },
-    4: { id: 4, text: 'implement reducer', completed: false, color: 'blue' },
-    5: { id: 5, text: 'Complete patterns', completed: false, color: 'red' },
-  },
+  entities: {},
 };
 
 const todosReducer = produce((state, action) => {
@@ -102,7 +96,6 @@ const selectFilteredTodos = createSelector(
     return todos.filter((todo) => {
       const statusFilter = showAll || todo.completed === showCompleted;
       const colorsFilter = colors.length === 0 || colors.includes(todo.color);
-
       return statusFilter && colorsFilter;
     });
   }
